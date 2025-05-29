@@ -31,23 +31,27 @@ public class Grid {
 	}
 
 	public void processNextState(int x, int y) {
-		try{
-			switch (aliveNeighboursAt(x, y)) {
-				case 2:
-					grid[x][y].setNextState(!grid[x][y].isAlive());
-					break;
+		try {
+			int aliveNeighbours = aliveNeighboursAt(x, y);
+			boolean isAlive = grid[x][y].isAlive();
 
-				case 3:
-					grid[x][y].setNextState(true);
-					break;
-
-				default:
+			if (isAlive) {
+				if (aliveNeighbours < 2 || aliveNeighbours > 3) {
 					grid[x][y].setNextState(false);
-					break;
+				} else {
+					grid[x][y].setNextState(true);
+				}
+			} else {
+				if (aliveNeighbours == 3) {
+					grid[x][y].setNextState(true);
+				} else {
+					grid[x][y].setNextState(false);
+				}
 			}
-		}catch (ArrayIndexOutOfBoundsException e){
-
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("PROBLEM");
 		}
+
 
 	}
 
@@ -57,8 +61,8 @@ public class Grid {
 
 	private void populateGrid(){
 		for (int i = 0; i < grid.length; i++) {
-			for (int j = 0; j < grid.length; j++) {
-				Cell cell = new Cell(i,j,false,false);
+			for (int j = 0; j < grid[0].length; j++) {
+				Cell cell = new Cell(i, j, false, false);
 				grid[i][j] = cell;
 			}
 		}
@@ -70,21 +74,18 @@ public class Grid {
 
 	private int getAliveCell(int x, int y) {
 		int aliveCell = 0;
-
 		for (int i = x - 1; i <= x + 1; i++) {
 			for (int j = y - 1; j <= y + 1; j++) {
-				if (i == 0 && j == 0) {
-					continue;
-				}
-				if (grid[i][j].isAlive()) {
-					aliveCell++;
+				if (i == x && j == y) continue;
+				if (i >= 0 && i < grid.length && j >= 0 && j < grid[0].length) {
+					if (grid[i][j].isAlive()) {
+						aliveCell++;
+					}
 				}
 			}
 		}
-
 		return aliveCell;
 	}
-
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
