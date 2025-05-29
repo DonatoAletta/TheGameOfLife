@@ -14,9 +14,11 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.util.Random;
+
 public class HelloApplication extends Application {
-	static final int HEIGHT = 150;
-	static final int WIDTH = 150;
+	static final int HEIGHT = 200;
+	static final int WIDTH = 200;
 	private final int CELL_SIZE = 5;
 	private Canvas canvas;
 	private Grid grid;
@@ -26,13 +28,13 @@ public class HelloApplication extends Application {
 	@Override
 	public void start(Stage stage) {
 		grid = new Grid(HEIGHT, WIDTH);
+		Random random = new Random();
 
-		grid.setCellCurrentState(10, 10, true);
-		grid.setCellCurrentState(11, 11, true);
-		grid.setCellCurrentState(11, 12, true);
-		grid.setCellCurrentState(10, 12, true);
-		grid.setCellCurrentState(9, 12, true);
-		grid.setCellCurrentState(8, 13, true);
+		for (int i = 0; i < 100; i++) {
+			int x = random.nextInt(HEIGHT);
+			int y = random.nextInt(WIDTH);
+			grid.setCellCurrentState(x, y, true);
+		}
 
 		canvas = new Canvas(WIDTH * CELL_SIZE, HEIGHT * CELL_SIZE);
 		drawGrid();
@@ -49,7 +51,7 @@ public class HelloApplication extends Application {
 			}
 		});
 
-		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.2), e -> {
+		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.05), e -> {
 			if (gameState) {
 				updateGrid();
 				drawGrid();
