@@ -30,8 +30,7 @@ public class TheGameOfLife extends Application {
 		grid = new Grid(HEIGHT, WIDTH);
 		Random random = new Random();
 
-		setGosperGliderGun(25,25);
-		//setDiehard(25,25);
+		setDiehard(25,25);
 
 		canvas = new Canvas(WIDTH * CELL_SIZE, HEIGHT * CELL_SIZE);
 		drawGrid();
@@ -162,6 +161,72 @@ public class TheGameOfLife extends Application {
 			grid.setCellCurrentState(startX + c[0], startY + c[1], true);
 		}
 	}
+
+	private void setPentadecathlon(int startX, int startY) {
+		int[] ys = {startY, startY + 1, startY + 2, startY + 3, startY + 4, startY + 5, startY + 6, startY + 7, startY + 8, startY + 9};
+		int[][] coords = {
+				{startX + 1, startY + 1},
+				{startX + 1, startY + 2},
+				{startX + 1, startY + 3},
+				{startX + 1, startY + 5},
+				{startX + 1, startY + 6},
+				{startX + 1, startY + 7},
+		};
+
+		// Draw main line of 10 cells
+		for (int y = startY; y < startY + 10; y++) {
+			grid.setCellCurrentState(startX, y, true);
+		}
+
+		// Add side cells for oscillation
+		for (int[] c : coords) {
+			grid.setCellCurrentState(c[0], c[1], true);
+		}
+	}
+
+	private void setLoaf(int startX, int startY) {
+		int[][] coords = {
+				{startX, startY + 1},
+				{startX + 1, startY},
+				{startX + 2, startY},
+				{startX + 3, startY + 1},
+				{startX + 1, startY + 2},
+				{startX + 3, startY + 2},
+				{startX + 2, startY + 3}
+		};
+		for (int[] c : coords) {
+			grid.setCellCurrentState(c[0], c[1], true);
+		}
+	}
+
+	private void setSwitchEngine(int startX, int startY) {
+		int[][] coords = {
+				{startX + 0, startY + 1},
+				{startX + 1, startY + 0},
+				{startX + 1, startY + 2},
+				{startX + 2, startY + 0},
+				{startX + 2, startY + 3},
+				{startX + 3, startY + 0},
+				{startX + 3, startY + 1},
+				{startX + 3, startY + 2},
+		};
+		for (int[] c : coords) {
+			grid.setCellCurrentState(c[0], c[1], true);
+		}
+	}
+
+	private void setBeacon(int startX, int startY) {
+		int[][] coords = {
+				{startX, startY}, {startX, startY + 1},
+				{startX + 1, startY},
+				{startX + 2, startY + 3},
+				{startX + 3, startY + 2}, {startX + 3, startY + 3}
+		};
+		for (int[] c : coords) {
+			grid.setCellCurrentState(c[0], c[1], true);
+		}
+	}
+
 
 	public static void main(String[] args) throws InterruptedException {
 		launch();
