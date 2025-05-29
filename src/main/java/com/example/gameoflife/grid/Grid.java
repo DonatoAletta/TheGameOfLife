@@ -5,11 +5,6 @@ import lombok.*;
 
 import java.util.Arrays;
 
-@Getter
-@Setter
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class Grid {
 	private Cell[][] grid;
 

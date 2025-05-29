@@ -2,9 +2,7 @@ package com.example.gameoflife.cell;
 
 import lombok.*;
 
-@Getter
-@Setter
-@Builder
+
 public class Cell {
     private int x;
     private int y;
