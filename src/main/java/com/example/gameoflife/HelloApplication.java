@@ -1,25 +1,18 @@
 package com.example.gameoflife;
 
-import com.example.gameoflife.cell.Cell;
 import com.example.gameoflife.grid.Grid;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.io.IOException;
-import java.util.Random;
 
 public class HelloApplication extends Application {
 	static final int HEIGHT = 150;
@@ -33,8 +26,6 @@ public class HelloApplication extends Application {
 	@Override
 	public void start(Stage stage) {
 		grid = new Grid(HEIGHT, WIDTH);
-		Random random = new Random();
-		int spawnPoint = random.nextInt((HEIGHT - 2) + 1);
 
 		grid.setCellCurrentState(10, 10, true);
 		grid.setCellCurrentState(11, 11, true);
@@ -42,7 +33,6 @@ public class HelloApplication extends Application {
 		grid.setCellCurrentState(10, 12, true);
 		grid.setCellCurrentState(9, 12, true);
 		grid.setCellCurrentState(8, 13, true);
-
 
 		canvas = new Canvas(WIDTH * CELL_SIZE, HEIGHT * CELL_SIZE);
 		drawGrid();
