@@ -16,7 +16,7 @@ import javafx.util.Duration;
 
 import java.util.Random;
 
-public class HelloApplication extends Application {
+public class TheGameOfLife extends Application {
 	static final int HEIGHT = 200;
 	static final int WIDTH = 200;
 	private final int CELL_SIZE = 5;
