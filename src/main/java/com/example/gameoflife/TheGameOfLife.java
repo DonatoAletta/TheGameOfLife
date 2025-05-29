@@ -17,9 +17,9 @@ import javafx.util.Duration;
 import java.util.Random;
 
 public class TheGameOfLife extends Application {
-	static final int HEIGHT = 100;
-	static final int WIDTH = 100;
-	private final int CELL_SIZE = 10;
+	static final int HEIGHT = 300;
+	static final int WIDTH = 300;
+	private final int CELL_SIZE = 3;
 	private Canvas canvas;
 	private Grid grid;
 
@@ -28,9 +28,8 @@ public class TheGameOfLife extends Application {
 	@Override
 	public void start(Stage stage) {
 		grid = new Grid(HEIGHT, WIDTH);
-		Random random = new Random();
 
-		setDiehard(25,25);
+		setRandomPattern(0.15);
 
 		canvas = new Canvas(WIDTH * CELL_SIZE, HEIGHT * CELL_SIZE);
 		drawGrid();
@@ -47,7 +46,7 @@ public class TheGameOfLife extends Application {
 			}
 		});
 
-		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.05), e -> {
+		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.07), e -> {
 			if (gameState) {
 				updateGrid();
 				drawGrid();
@@ -227,6 +226,15 @@ public class TheGameOfLife extends Application {
 		}
 	}
 
+	private void setRandomPattern(double aliveProbability) {
+		Random random = new Random();
+		for (int i = 0; i < HEIGHT; i++) {
+			for (int j = 0; j < WIDTH; j++) {
+				boolean alive = random.nextDouble() < aliveProbability;
+				grid.setCellCurrentState(i, j, alive);
+			}
+		}
+	}
 
 	public static void main(String[] args) throws InterruptedException {
 		launch();
