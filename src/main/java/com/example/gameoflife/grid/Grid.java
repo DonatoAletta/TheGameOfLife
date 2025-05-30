@@ -3,7 +3,7 @@ package com.example.gameoflife.grid;
 import com.example.gameoflife.cell.Cell;
 
 public class Grid {
-	private Cell[][] grid;
+	private final Cell[][] grid;
 
 	public Grid(int x, int y) {
 		this.grid = new Cell[x][y];
@@ -28,17 +28,9 @@ public class Grid {
 			boolean isAlive = grid[x][y].isAlive();
 
 			if (isAlive) {
-				if (aliveNeighbours < 2 || aliveNeighbours > 3) {
-					grid[x][y].setNextState(false);
-				} else {
-					grid[x][y].setNextState(true);
-				}
+                grid[x][y].setNextState(aliveNeighbours >= 2 && aliveNeighbours <= 3);
 			} else {
-				if (aliveNeighbours == 3) {
-					grid[x][y].setNextState(true);
-				} else {
-					grid[x][y].setNextState(false);
-				}
+                grid[x][y].setNextState(aliveNeighbours == 3);
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("PROBLEM");

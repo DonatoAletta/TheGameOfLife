@@ -5,9 +5,9 @@ import com.example.gameoflife.grid.Grid;
 import java.util.Random;
 
 public class GamePattern {
-	private Grid grid;
-	private int HEIGHT;
-	private int WIDTH;
+	private final Grid grid;
+	private final int HEIGHT;
+	private final int WIDTH;
 
 	public GamePattern(Grid grid, int HEIGHT, int WIDTH) {
 		this.grid = grid;

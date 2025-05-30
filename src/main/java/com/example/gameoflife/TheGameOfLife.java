@@ -21,14 +21,13 @@ public class TheGameOfLife extends Application {
 	private final int CELL_SIZE = 10;
 	private Canvas canvas;
 	private Grid grid;
-	private GamePattern gamePattern;
 
-	static boolean gameState = true;
+    static boolean gameState = true;
 
 	@Override
 	public void start(Stage stage) {
 		grid = new Grid(HEIGHT, WIDTH);
-		gamePattern = new GamePattern(grid, HEIGHT, WIDTH);
+        GamePattern gamePattern = new GamePattern(grid, HEIGHT, WIDTH);
 
 		gamePattern.setDiehard(25, 25);
 
@@ -81,7 +80,7 @@ public class TheGameOfLife extends Application {
 		}
 	}
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) {
 		launch();
 	}
 }
