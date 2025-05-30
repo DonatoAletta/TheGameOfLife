@@ -1,9 +1,6 @@
 package com.example.gameoflife.grid;
 
 import com.example.gameoflife.cell.Cell;
-import lombok.*;
-
-import java.util.Arrays;
 
 public class Grid {
 	private Cell[][] grid;
@@ -16,7 +13,7 @@ public class Grid {
 	public void play() {
 		for (Cell[] cells : grid) {
 			for (int j = 0; j < grid.length; j++) {
-                cells[j].setAlive(cells[j].isNextState());
+				cells[j].setAlive(cells[j].isNextState());
 			}
 		}
 	}
@@ -47,14 +44,13 @@ public class Grid {
 			System.out.println("PROBLEM");
 		}
 
-
 	}
 
 	public void setCellCurrentState(int x, int y, boolean state) {
 		grid[x][y].setAlive(state);
 	}
 
-	private void populateGrid(){
+	private void populateGrid() {
 		for (int i = 0; i < grid.length; i++) {
 			for (int j = 0; j < grid[0].length; j++) {
 				Cell cell = new Cell(i, j, false, false);
@@ -71,7 +67,8 @@ public class Grid {
 		int aliveCell = 0;
 		for (int i = x - 1; i <= x + 1; i++) {
 			for (int j = y - 1; j <= y + 1; j++) {
-				if (i == x && j == y) continue;
+				if (i == x && j == y)
+					continue;
 				if (i >= 0 && i < grid.length && j >= 0 && j < grid[0].length) {
 					if (grid[i][j].isAlive()) {
 						aliveCell++;
@@ -81,6 +78,7 @@ public class Grid {
 		}
 		return aliveCell;
 	}
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

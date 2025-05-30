@@ -1,8 +1,8 @@
 package com.example.gameoflife;
 
 import com.example.gameoflife.grid.Grid;
-
 import com.example.gameoflife.pattern.GamePattern;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -14,8 +14,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
-import java.util.Random;
 
 public class TheGameOfLife extends Application {
 	static final int HEIGHT = 100;
@@ -32,7 +30,7 @@ public class TheGameOfLife extends Application {
 		grid = new Grid(HEIGHT, WIDTH);
 		gamePattern = new GamePattern(grid, HEIGHT, WIDTH);
 
-		gamePattern.setDiehard(25,25);
+		gamePattern.setDiehard(25, 25);
 
 		canvas = new Canvas(WIDTH * CELL_SIZE, HEIGHT * CELL_SIZE);
 		drawGrid();
@@ -82,8 +80,6 @@ public class TheGameOfLife extends Application {
 			}
 		}
 	}
-
-
 
 	public static void main(String[] args) throws InterruptedException {
 		launch();
